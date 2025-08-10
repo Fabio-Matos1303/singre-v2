@@ -65,35 +65,37 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Placeholders para validação: `backend/public/index.php` e `frontend/index.html`.
 *   Arquivos `.env.example` criados (raiz, backend e frontend) para facilitar configuração local.
 
-### Sprint 2: Otimização do Docker e Gerenciamento de Ambiente (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
+### Sprint 2: Otimização do Docker e Gerenciamento de Ambiente (Duração: 1-2 semanas) — Status: CONCLUÍDA ✅
 
 **Objetivo:** Otimizar as configurações Docker e implementar um gerenciamento robusto de variáveis de ambiente.
 
 **Tarefas:**
 
 *   **Otimização de Dockerfiles:**
-    *   Otimizar `docker/backend/Dockerfile` para builds menores e mais rápidos (multi-stage builds, cache de camadas). [EM PROGRESSO]
+    *   Otimizar `docker/backend/Dockerfile` para builds menores e mais rápidos (multi-stage builds, cache de camadas). [CONCLUÍDO]
     *   Melhorias aplicadas no backend: habilitado `opcache`, adicionado `php.ini` de desenvolvimento, uso de usuário não-root. [CONCLUÍDO]
-    *   Otimizar `docker/frontend/Dockerfile` para builds de produção (build de assets, servir via Nginx). [PENDENTE]
+    *   Otimizar `docker/frontend/Dockerfile` para builds de produção (build de assets, servir via Nginx). [CONCLUÍDO]
 *   **Gerenciamento de Variáveis de Ambiente:**
-    *   Implementar estratégias para gerenciar variáveis de ambiente em diferentes ambientes (desenvolvimento, staging, produção). [EM PROGRESSO]
+    *   Implementar estratégias para gerenciar variáveis de ambiente em diferentes ambientes (desenvolvimento, staging, produção). [CONCLUÍDO]
     *   Arquivos `.env.example` adicionados (raiz, backend e frontend). [CONCLUÍDO]
-    *   Documentar o processo de configuração de variáveis de ambiente para cada ambiente. [PENDENTE]
+    *   Documentar o processo de configuração de variáveis de ambiente para cada ambiente. [CONCLUÍDO]
 *   **Scripts de Conveniência:**
     *   Criar scripts shell em `scripts/` para facilitar operações comuns (ex: `scripts/dev-up.sh`, `scripts/dev-down.sh`, `scripts/backend-artisan.sh`, `scripts/frontend-npm.sh`). [CONCLUÍDO]
     *   Adicionados também `scripts/logs.sh`, `scripts/ps.sh`, `scripts/rebuild.sh`, `scripts/compose.sh`. [CONCLUÍDO]
 *   **Docker Compose para Produção (Esboço):**
     *   Criar um `docker-compose.prod.yml` inicial para produção, com foco em escalabilidade e segurança (sem volumes de código, portas expostas mínimas). [CONCLUÍDO]
+    *   Parametrização de portas e targets de build via `.env` no `docker-compose.yml`. [CONCLUÍDO]
 *   **Serviços adicionais para Dev:**
     *   Mailpit incluído no `docker-compose.yml` (SMTP 1025 / UI 8025) e variáveis de e-mail configuradas no backend. [CONCLUÍDO]
     *   Removida chave `version` do `docker-compose.yml` para evitar warning. [CONCLUÍDO]
+    *   Healthchecks para `backend`, `nginx`, `redis` e `frontend` no Compose. [CONCLUÍDO]
 
 **Entregáveis da Sprint:**
 
-*   Dockerfiles otimizados para desenvolvimento e produção. [PENDENTE PARCIAL]
+*   Dockerfiles otimizados para desenvolvimento e produção. [CONCLUÍDO]
   * Backend com `opcache`, `php.ini` e usuário não-root. [CONCLUÍDO]
-  * Frontend otimizado para produção. [PENDENTE]
-*   Estratégia clara para gerenciamento de variáveis de ambiente (arquivos `.env.example` adicionados). [EM PROGRESSO]
+  * Frontend otimizado para produção. [CONCLUÍDO]
+*   Estratégia clara para gerenciamento de variáveis de ambiente (arquivos `.env.example` adicionados). [CONCLUÍDO]
 *   Scripts de automação para o ambiente de desenvolvimento. [CONCLUÍDO]
 *   Esboço de configuração Docker Compose para produção (`docker-compose.prod.yml`). [CONCLUÍDO]
 *   Mailpit disponível em `http://localhost:8025` (SMTP em `localhost:1025`). [CONCLUÍDO]

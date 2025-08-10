@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
 
   backend:
-    image: ghcr.io/your-org/singre-backend:${BACKEND_TAG:-latest}
+    image: ${REGISTRY:-ghcr.io}/${IMAGE_ORG:-your-org}/singre-backend:${BACKEND_TAG:-latest}
     depends_on:
       - mysql
       - redis
@@ -47,7 +47,7 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: ghcr.io/your-org/singre-frontend:${FRONTEND_TAG:-latest}
+    image: ${REGISTRY:-ghcr.io}/${IMAGE_ORG:-your-org}/singre-frontend:${FRONTEND_TAG:-latest}
     ports:
       - "8080:80"
     restart: unless-stopped
