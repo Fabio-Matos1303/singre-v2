@@ -129,6 +129,25 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     restart: unless-stopped
 
+  mysql-exporter:
+    image: prom/mysqld-exporter:v0.16.0
+    environment:
+      DATA_SOURCE_NAME: ${MYSQL_EXPORTER_DSN:-${MYSQL_USER:-singre}:${MYSQL_PASSWORD:?set}@(mysql:3306)/}
+    ports:
+      - "9104:9104"
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.63.0
+    command: ["--redis.addr", "redis:6379"]
+    ports:
+      - "9121:9121"
+    depends_on:
+      - redis
+    restart: unless-stopped
+
   frontend:
     image: ${REGISTRY:-ghcr.io}/${IMAGE_ORG:-your-org}/singre-frontend:${FRONTEND_TAG:-latest}
     ports:

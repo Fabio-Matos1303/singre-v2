@@ -1,0 +1,29 @@
+{
+  "title": "Alerts",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "HTTP 5xx (logs)",
+      "targets": [
+        {
+          "expr": "sum(rate({job=\"docker\", stream=\"stdout\"} |= \" 5\\\\d\\\\d \" [5m]))",
+          "refId": "A",
+          "datasource": {"type": "loki", "uid": "loki"}
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "CPU usage > 80% (cAdvisor)",
+      "targets": [
+        {
+          "expr": "avg(rate(container_cpu_usage_seconds_total[5m])) * 100",
+          "refId": "B",
+          "datasource": {"type": "prometheus", "uid": "prometheus"}
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1
+}

@@ -1,0 +1,17 @@
+{
+  "title": "MySQL & Redis Overview",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "MySQL Up",
+      "targets": [{"expr": "mysql_up", "refId": "A"}]
+    },
+    {
+      "type": "stat",
+      "title": "Redis Up",
+      "targets": [{"expr": "redis_up", "refId": "B"}]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1
+}
