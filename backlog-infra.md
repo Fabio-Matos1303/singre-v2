@@ -109,13 +109,13 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   **Seleção da Ferramenta de CI/CD:**
     *   Escolher uma ferramenta de CI/CD (ex: GitHub Actions, GitLab CI, Jenkins, CircleCI).
 *   **Pipeline de CI (Integração Contínua):**
-    *   Configurar o pipeline para disparar em cada push para o repositório.
+    *   Configurar o pipeline para disparar em cada push para o repositório. [CONCLUÍDO]
     *   Passos do pipeline:
-        *   Checkout do código.
-        *   Build das imagens Docker do backend e frontend.
-        *   Execução de testes unitários e de integração (backend e frontend).
-        *   Análise de código estática (linters, code style).
-        *   Notificação de sucesso/falha.
+        *   Checkout do código. [CONCLUÍDO]
+        *   Build das imagens Docker do backend e frontend. [CONCLUÍDO]
+        *   Execução de testes unitários e de integração (backend e frontend). [EM PROGRESSO — executa se presentes]
+        *   Análise de código estática (linters, code style). [EM PROGRESSO — executa se presentes]
+        *   Notificação de sucesso/falha. [CONCLUÍDO - via status do Actions]
 *   **Pipeline de CD (Entrega Contínua - Staging):**
     *   Configurar o pipeline para deploy automático no ambiente de staging após CI bem-sucedido.
     *   Passos do pipeline:
