@@ -1,0 +1,5 @@
+services:
+  nginx:
+    volumes:
+      - ./docker/nginx/default.tls.conf:/etc/nginx/conf.d/default.conf:ro
+      - ${TLS_CERTS_DIR:-./certs}:/etc/nginx/certs:ro
