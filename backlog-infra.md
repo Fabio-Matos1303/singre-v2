@@ -132,27 +132,27 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Imagens Docker do backend e frontend sendo construídas e versionadas. [CONCLUÍDO]
 *   Testes automatizados sendo executados no pipeline. [CONCLUÍDO]
 
-### Sprint 4: Deploy em Produção e Monitoramento (Duração: 1-2 semanas)
+### Sprint 4: Deploy em Produção e Monitoramento (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
 
 **Objetivo:** Finalizar o processo de deploy em produção e configurar ferramentas de monitoramento e logs.
 
 **Tarefas:**
 
 *   **Pipeline de CD (Produção):**
-    *   Configurar o pipeline para deploy em produção (manual ou automático após aprovação).
+    *   Configurar o pipeline para deploy em produção (manual ou automático após aprovação). [EM PROGRESSO]
     *   Passos do pipeline:
         *   Pull das imagens Docker do registry.
         *   Deploy para o ambiente de produção (ex: Kubernetes, Docker Swarm, EC2).
         *   Estratégias de deploy (rolling updates, blue/green) para minimizar downtime.
 *   **Configuração de Logs:**
-    *   Configurar os containers Docker para enviar logs para um sistema centralizado (ex: ELK Stack, Grafana Loki, CloudWatch Logs).
+    *   Configurar os containers Docker para enviar logs para um sistema centralizado (ex: ELK Stack, Grafana Loki, CloudWatch Logs). [EM PROGRESSO — rotação local configurada]
     *   Garantir que logs de aplicação (Laravel, Vue.js) e de servidor (Nginx) sejam capturados.
 *   **Monitoramento:**
     *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic).
-    *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros.
+    *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [PENDENTE]
     *   Configurar alertas para problemas críticos.
 *   **Backup do Banco de Dados (Produção):**
-    *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção.
+    *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção. [EM PROGRESSO — scripts locais adicionados]
 
 **Entregáveis da Sprint:**
 
