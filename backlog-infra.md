@@ -100,7 +100,7 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Esboço de configuração Docker Compose para produção (`docker-compose.prod.yml`). [CONCLUÍDO]
 *   Mailpit disponível em `http://localhost:8025` (SMTP em `localhost:1025`). [CONCLUÍDO]
 
-### Sprint 3: Pipelines de CI/CD (Duração: 2 semanas)
+### Sprint 3: Pipelines de CI/CD (Duração: 2 semanas) — Status: EM ANDAMENTO 🚧
 
 **Objetivo:** Implementar pipelines de Integração Contínua e Entrega Contínua para automatizar o build, teste e deploy.
 
@@ -128,9 +128,9 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 
 **Entregáveis da Sprint:**
 
-*   Pipelines de CI/CD configurados para build, teste e deploy em staging.
-*   Imagens Docker do backend e frontend sendo construídas e versionadas.
-*   Testes automatizados sendo executados no pipeline.
+*   Pipelines de CI/CD configurados para build, teste e deploy em staging. [EM PROGRESSO]
+*   Imagens Docker do backend e frontend sendo construídas e versionadas. [EM PROGRESSO]
+*   Testes automatizados sendo executados no pipeline. [EM PROGRESSO]
 
 ### Sprint 4: Deploy em Produção e Monitoramento (Duração: 1-2 semanas)
 
