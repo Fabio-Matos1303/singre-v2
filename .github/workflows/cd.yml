@@ -32,13 +32,25 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Derive tags
-        id: meta
+      - name: Derive tags (backend)
+        id: meta_back
         uses: docker/metadata-action@v5
         with:
-          images: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_ORG }}/singre-backend
-            ${{ env.REGISTRY }}/${{ env.IMAGE_ORG }}/singre-frontend
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_ORG }}/singre-backend
+          tags: |
+            type=ref,event=branch
+            type=ref,event=tag
+            type=sha
+
+      - name: Derive tags (frontend)
+        id: meta_front
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_ORG }}/singre-frontend
+          tags: |
+            type=ref,event=branch
+            type=ref,event=tag
+            type=sha
 
       - name: Build and push backend
         uses: docker/build-push-action@v6
@@ -46,8 +58,10 @@ jobs:
           context: .
           file: docker/backend/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta_back.outputs.tags }}
+          labels: ${{ steps.meta_back.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Build and push frontend (final-built)
         uses: docker/build-push-action@v6
@@ -56,8 +70,10 @@ jobs:
           file: docker/frontend/Dockerfile
           target: final-built
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta_front.outputs.tags }}
+          labels: ${{ steps.meta_front.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Show compose.prod with resolved images
         run: |
