@@ -148,8 +148,8 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
     *   Configurar os containers Docker para enviar logs para um sistema centralizado (ex: ELK Stack, Grafana Loki, CloudWatch Logs). [EM PROGRESSO — Loki/Promtail adicionados]
     *   Garantir que logs de aplicação (Laravel, Vue.js) e de servidor (Nginx) sejam capturados.
 *   **Monitoramento:**
-    *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic). [EM PROGRESSO — Grafana adicionado]
-    *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [PENDENTE]
+    *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic). [EM PROGRESSO — Grafana, Prometheus e cAdvisor adicionados]
+    *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [EM PROGRESSO]
     *   Configurar alertas para problemas críticos.
 *   **Backup do Banco de Dados (Produção):**
     *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção. [EM PROGRESSO — serviço de backup com cron no compose.prod]
