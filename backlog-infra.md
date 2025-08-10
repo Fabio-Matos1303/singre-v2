@@ -152,7 +152,7 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
     *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [PENDENTE]
     *   Configurar alertas para problemas críticos.
 *   **Backup do Banco de Dados (Produção):**
-    *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção. [EM PROGRESSO — scripts locais adicionados]
+    *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção. [EM PROGRESSO — serviço de backup com cron no compose.prod]
 
 **Entregáveis da Sprint:**
 

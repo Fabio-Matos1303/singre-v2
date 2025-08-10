@@ -87,5 +87,41 @@ services:
         max-file: "3"
     restart: unless-stopped
 
+  db_backup:
+    image: alpine:3.20
+    depends_on:
+      - mysql
+    environment:
+      TZ: ${TZ:-UTC}
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-singre}
+      MYSQL_USER: ${MYSQL_USER:-singre}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-7}
+    volumes:
+      - db_backups:/backups
+    command: >-
+      sh -lc '
+        set -e;
+        apk add --no-cache mysql-client tzdata;
+        ln -sf /usr/share/zoneinfo/$TZ /etc/localtime || true;
+        cat > /backup.sh <<EOS
+        #!/bin/sh
+        set -e
+        TS=$(date +%Y%m%d%H%M%S)
+        FILE=/backups/db-"$MYSQL_DATABASE"-"$TS".sql
+        echo "[backup] dumping to $FILE";
+        mysqldump -h "$MYSQL_HOST" -P "$MYSQL_PORT" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" > "$FILE";
+        echo "[backup] pruning backups older than $BACKUP_RETENTION_DAYS days";
+        find /backups -type f -name "*.sql" -mtime +"$BACKUP_RETENTION_DAYS" -delete || true;
+        EOS
+        chmod +x /backup.sh;
+        echo "0 3 * * * /bin/sh /backup.sh" > /etc/crontabs/root;
+        crond -f -l 8
+      '
+    restart: unless-stopped
+
 volumes:
   mysql_data:
+  db_backups:
