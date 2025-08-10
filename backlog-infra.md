@@ -145,10 +145,10 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
         *   Deploy para o ambiente de produção (ex: Kubernetes, Docker Swarm, EC2).
         *   Estratégias de deploy (rolling updates, blue/green) para minimizar downtime.
 *   **Configuração de Logs:**
-    *   Configurar os containers Docker para enviar logs para um sistema centralizado (ex: ELK Stack, Grafana Loki, CloudWatch Logs). [EM PROGRESSO — rotação local configurada]
+    *   Configurar os containers Docker para enviar logs para um sistema centralizado (ex: ELK Stack, Grafana Loki, CloudWatch Logs). [EM PROGRESSO — Loki/Promtail adicionados]
     *   Garantir que logs de aplicação (Laravel, Vue.js) e de servidor (Nginx) sejam capturados.
 *   **Monitoramento:**
-    *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic).
+    *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic). [EM PROGRESSO — Grafana adicionado]
     *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [PENDENTE]
     *   Configurar alertas para problemas críticos.
 *   **Backup do Banco de Dados (Produção):**
