@@ -1,0 +1,29 @@
+# Global dockerignore for monorepo
+.git
+.gitignore
+**/.git
+**/.idea
+**/.vscode
+**/.DS_Store
+
+# Node
+**/node_modules
+**/frontend/node_modules
+**/frontend/.vite
+
+# PHP/Laravel
+**/vendor
+**/storage
+**/bootstrap/cache
+
+# Docker artifacts
+**/.env
+**/.env.local
+**/.env.*.local
+**/.env.*
+**/docker/mysql/data
+
+# Logs and caches
+**/*.log
+**/tmp
+**/.cache
