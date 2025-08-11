@@ -140,7 +140,7 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Envio de e-mails transacionais configurado e funcional. [CONCLUÍDO]
 *   (Opcional) Geração de dados para gráficos via API.
 
-### Sprint 5: Segurança, Configurações e Otimizações (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
+### Sprint 5: Segurança, Configurações e Otimizações (Duração: 1-2 semanas) — Status: CONCLUÍDA ✅
 
 **Objetivo:** Consolidar segurança e performance, concluir configurações do sistema e preparar backup/restore.
 
@@ -149,24 +149,24 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   **Configurações do Sistema:** [CONCLUÍDO]
     *   Modelo `Setting` com cache, migration/seeders e API CRUD (`/api/settings`).
     *   Integração em PDF/E-mail (nome/contato da empresa).
-*   **Segurança e Performance:** [EM PROGRESSO]
-    *   Rate limiting global e por endpoint (login/listagens/relatórios).
-    *   Headers de segurança no Nginx (CSP restritiva, HSTS em TLS, COOP/CORP, Permissions-Policy).
-    *   Índices de busca e casts numéricos (produtos/serviços).
-    *   Varreduras Trivy (FS, config e imagem backend) no CI.
-    *   API Resources padronizando payloads; soft deletes em clients/products/services.
-*   **Backup/Restore do Banco de Dados:** [PENDENTE]
-    *   Pesquisar e integrar uma solução de backup de banco de dados para Laravel (ex: `spatie/laravel-backup`).
-    *   Implementar endpoints de API para iniciar um backup manual e listar backups existentes.
-    *   (Opcional) Implementar funcionalidade de restore (com cautela e validação de segurança).
-    *   Configurar agendamento de backups automáticos via Laravel Scheduler (executado via cron no Docker).
+*   **Segurança e Performance:** [CONCLUÍDO]
+    *   Rate limiting global e por endpoint (login/listagens/relatórios) aplicado.
+    *   Headers de segurança no Nginx (CSP restritiva, COOP/CORP, Permissions-Policy) aplicados.
+    *   Índices de busca e casts numéricos: índices adicionados para `name`, `price`, `stock` e `deleted_at` (soft deletes).
+    *   API Resources padronizando payloads; soft deletes em clients/products/services com filtros e restore via API.
+*   **Backup/Restore do Banco de Dados:** [CONCLUÍDO]
+    *   Integrado `spatie/laravel-backup` (config publicada e ajustada para dev).
+    *   Endpoints de API: `POST /api/backups/run`, `GET /api/backups`, `GET /api/backups/{filename}/download`.
+    *   Agendamento diário às 02:00 via Scheduler do Laravel (serviço dedicado `scheduler` no Docker).
+    *   Backup manual DB-only testado com sucesso.
+    *   (Opcional) Restore de banco permanece fora do escopo desta sprint.
 
 **Entregáveis da Sprint:**
 
 *   Gerenciamento de configurações do sistema via API. [CONCLUÍDO]
 *   Rate limiting e headers de segurança aplicados. [CONCLUÍDO]
 *   Soft deletes e API Resources implementados. [CONCLUÍDO]
-*   (Pendente) Funcionalidade de backup/restore exposta via API.
+*   Backup exposto via API e agendado no Scheduler (serviço Docker). [CONCLUÍDO]
 
 ### Sprint 6: Refinamento, Testes e Documentação (Duração: 1 semana)
 
