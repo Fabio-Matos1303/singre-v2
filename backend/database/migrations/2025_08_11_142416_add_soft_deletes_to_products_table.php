@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->softDeletes();
+            $table->index('deleted_at');
+            $table->index('price');
+            $table->index('stock');
         });
     }
 
