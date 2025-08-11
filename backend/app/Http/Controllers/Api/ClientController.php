@@ -29,6 +29,14 @@ class ClientController extends Controller
     {
         $query = Client::query();
 
+        $withTrashed = filter_var($request->query('with_trashed'), FILTER_VALIDATE_BOOLEAN);
+        $onlyTrashed = filter_var($request->query('only_trashed'), FILTER_VALIDATE_BOOLEAN);
+        if ($onlyTrashed) {
+            $query->onlyTrashed();
+        } elseif ($withTrashed) {
+            $query->withTrashed();
+        }
+
         $search = trim((string) $request->query('q', ''));
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
@@ -52,6 +60,12 @@ class ClientController extends Controller
             'per_page' => $paginator->perPage(),
             'total' => $paginator->total(),
         ]);
+    }
+
+    public function restore(Client $client): JsonResponse
+    {
+        $client->restore();
+        return response()->json(['message' => 'Restored']);
     }
 
     /**

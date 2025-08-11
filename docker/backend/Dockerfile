@@ -5,7 +5,7 @@ FROM php:8.3-fpm-alpine
 RUN apk add --no-cache \
     bash git curl zip unzip libzip-dev oniguruma-dev icu-dev \
     libpng-dev libjpeg-turbo-dev freetype-dev \
-    mariadb-connector-c-dev shadow
+    mariadb-connector-c-dev mariadb-client shadow
 
 # PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \

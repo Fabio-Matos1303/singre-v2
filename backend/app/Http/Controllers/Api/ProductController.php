@@ -29,6 +29,14 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
+        $withTrashed = filter_var($request->query('with_trashed'), FILTER_VALIDATE_BOOLEAN);
+        $onlyTrashed = filter_var($request->query('only_trashed'), FILTER_VALIDATE_BOOLEAN);
+        if ($onlyTrashed) {
+            $query->onlyTrashed();
+        } elseif ($withTrashed) {
+            $query->withTrashed();
+        }
+
         $search = trim((string) $request->query('q', ''));
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
@@ -52,6 +60,12 @@ class ProductController extends Controller
             'per_page' => $paginator->perPage(),
             'total' => $paginator->total(),
         ]);
+    }
+
+    public function restore(Product $product): JsonResponse
+    {
+        $product->restore();
+        return response()->json(['message' => 'Restored']);
     }
 
     /**

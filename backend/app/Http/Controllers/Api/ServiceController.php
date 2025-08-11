@@ -29,6 +29,14 @@ class ServiceController extends Controller
     {
         $query = Service::query();
 
+        $withTrashed = filter_var($request->query('with_trashed'), FILTER_VALIDATE_BOOLEAN);
+        $onlyTrashed = filter_var($request->query('only_trashed'), FILTER_VALIDATE_BOOLEAN);
+        if ($onlyTrashed) {
+            $query->onlyTrashed();
+        } elseif ($withTrashed) {
+            $query->withTrashed();
+        }
+
         $search = trim((string) $request->query('q', ''));
         if ($search !== '') {
             $query->where(function ($q) use ($search) {
@@ -51,6 +59,12 @@ class ServiceController extends Controller
             'per_page' => $paginator->perPage(),
             'total' => $paginator->total(),
         ]);
+    }
+
+    public function restore(Service $service): JsonResponse
+    {
+        $service->restore();
+        return response()->json(['message' => 'Restored']);
     }
 
     /**
