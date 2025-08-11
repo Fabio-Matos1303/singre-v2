@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Http\Resources\ServiceResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -43,7 +44,13 @@ class ServiceController extends Controller
         $perPage = (int) $request->query('per_page', 15);
         $perPage = max(1, min(100, $perPage));
 
-        return response()->json($query->paginate($perPage));
+        $paginator = $query->paginate($perPage);
+        return response()->json([
+            'data' => ServiceResource::collection($paginator)->resolve(),
+            'current_page' => $paginator->currentPage(),
+            'per_page' => $paginator->perPage(),
+            'total' => $paginator->total(),
+        ]);
     }
 
     /**
@@ -66,7 +73,7 @@ class ServiceController extends Controller
             'price' => ['nullable', 'numeric', 'min:0'],
         ]);
         $service = Service::create($data);
-        return response()->json($service, 201);
+        return (new ServiceResource($service))->response()->setStatusCode(201);
     }
 
     /**
@@ -83,7 +90,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service): JsonResponse
     {
-        return response()->json($service);
+        return (new ServiceResource($service))->response();
     }
 
     /**
@@ -107,7 +114,7 @@ class ServiceController extends Controller
             'price' => ['nullable', 'numeric', 'min:0'],
         ]);
         $service->update($data);
-        return response()->json($service);
+        return (new ServiceResource($service))->response();
     }
 
     /**

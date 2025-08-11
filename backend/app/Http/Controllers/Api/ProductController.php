@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -44,7 +45,13 @@ class ProductController extends Controller
         $perPage = (int) $request->query('per_page', 15);
         $perPage = max(1, min(100, $perPage));
 
-        return response()->json($query->paginate($perPage));
+        $paginator = $query->paginate($perPage);
+        return response()->json([
+            'data' => ProductResource::collection($paginator)->resolve(),
+            'current_page' => $paginator->currentPage(),
+            'per_page' => $paginator->perPage(),
+            'total' => $paginator->total(),
+        ]);
     }
 
     /**
@@ -69,7 +76,7 @@ class ProductController extends Controller
             'stock' => ['nullable', 'integer', 'min:0'],
         ]);
         $product = Product::create($data);
-        return response()->json($product, 201);
+        return (new ProductResource($product))->response()->setStatusCode(201);
     }
 
     /**
@@ -86,7 +93,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): JsonResponse
     {
-        return response()->json($product);
+        return (new ProductResource($product))->response();
     }
 
     /**
@@ -112,7 +119,7 @@ class ProductController extends Controller
             'stock' => ['nullable', 'integer', 'min:0'],
         ]);
         $product->update($data);
-        return response()->json($product);
+        return (new ProductResource($product))->response();
     }
 
     /**

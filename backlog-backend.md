@@ -7,7 +7,7 @@ Este documento detalha o backlog de tarefas e a divisão em sprints para a atual
 
 O novo sistema será composto por:
 
-*   **Backend:** Laravel 10+ (PHP 8+), atuando como uma API RESTful. Será responsável pela lógica de negócio, persistência de dados e autenticação via Laravel Sanctum.
+*   **Backend:** Laravel 12 (PHP 8.3), atuando como uma API RESTful. Responsável pela lógica de negócio, persistência de dados e autenticação via Laravel Sanctum.
 *   **Banco de Dados:** MySQL/MariaDB, gerenciado pelo Laravel Eloquent ORM e Migrations.
 *   **Ambiente de Desenvolvimento/Produção:** Docker, utilizando Laravel Sail para facilitar a configuração e padronização do ambiente.
 
@@ -60,7 +60,7 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Sistema de autenticação de API (login/registro) funcional via Laravel Sanctum. [CONCLUÍDO]
 *   `composer.json` atualizado com as dependências necessárias.
 
-### Sprint 2: Gerenciamento de Clientes e Produtos/Serviços (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
+### Sprint 2: Gerenciamento de Clientes e Produtos/Serviços (Duração: 1-2 semanas) — Status: CONCLUÍDA ✅
 
 **Objetivo:** Migrar as funcionalidades de CRUD para Clientes e Produtos/Serviços, utilizando o Eloquent ORM e criando endpoints de API.
 
@@ -79,8 +79,8 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
     *   Implementar a lógica CRUD nos controladores, utilizando o Eloquent ORM.
 *   **Validação de Dados:** [CONCLUÍDO]
     *   Adicionar regras de validação para os dados de entrada nos requests de criação e atualização.
-*   **Testes de API:** [CONCLUÍDO PARCIAL — CRUD de listagem/criação cobertos]
-    *   Testar todos os endpoints CRUD via Postman/Insomnia.
+*   **Testes de API:** [CONCLUÍDO]
+    *   Testes de feature cobrindo listagem/criação/visualização/atualização/remoção, filtros/ordenação/paginação.
 
 **Entregáveis da Sprint:**
 
@@ -117,16 +117,15 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Endpoints de API RESTful completos para CRUD de Ordens de Serviço. [CONCLUÍDO]
 *   Lógica de negócio central de Ordens de Serviço implementada no backend. [CONCLUÍDO]
 
-### Sprint 4: Relatórios e E-mails (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
+### Sprint 4: Relatórios e E-mails (Duração: 1-2 semanas) — Status: CONCLUÍDA ✅
 
 **Objetivo:** Implementar a geração de relatórios (PDFs) e o envio de e-mails transacionais.
 
 **Tarefas:**
 
-*   **Geração de PDFs:** [EM PROGRESSO — endpoint PDF de OS implementado]
-    *   Integrar uma biblioteca de geração de PDF (ex: `dompdf/dompdf` via `barryvdh/laravel-dompdf`).
-    *   Criar views Blade para os layouts dos relatórios (ex: Ordem de Serviço, Resumo de Clientes).
-    *   Implementar endpoints de API para gerar e baixar PDFs de Ordens de Serviço ou outros relatórios.
+*   **Geração de PDFs:** [CONCLUÍDO]
+    *   `dompdf/dompdf` integrado; Blade de OS criada; endpoint `/api/service-orders/{id}/pdf` documentado.
+    *   PDF anexado automaticamente no e-mail de criação da OS.
 *   **Envio de E-mails:** [CONCLUÍDO — envio ao criar OS via Mailpit]
     *   Configurar o Mailpit (ou outro serviço de e-mail de desenvolvimento) no Docker para testar o envio de e-mails.
     *   Criar Mailables no Laravel para e-mails transacionais (ex: confirmação de Ordem de Serviço, notificação de status).
@@ -141,17 +140,21 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Envio de e-mails transacionais configurado e funcional. [CONCLUÍDO]
 *   (Opcional) Geração de dados para gráficos via API.
 
-### Sprint 5: Configurações do Sistema e Backup/Restore (Duração: 1 semana) — Status: EM ANDAMENTO 🚧
+### Sprint 5: Segurança, Configurações e Otimizações (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
 
-**Objetivo:** Migrar as configurações do sistema e a funcionalidade de backup/restore.
+**Objetivo:** Consolidar segurança e performance, concluir configurações do sistema e preparar backup/restore.
 
 **Tarefas:**
 
-*   **Configurações do Sistema:** [EM PROGRESSO]
-    *   Analisar a tabela `configuracao` legada.
-    *   Criar modelo Eloquent e migration para a tabela de configurações.
-    *   Implementar endpoints de API para visualizar e atualizar as configurações do sistema.
-    *   Utilizar o sistema de cache do Laravel para otimizar o acesso às configurações.
+*   **Configurações do Sistema:** [CONCLUÍDO]
+    *   Modelo `Setting` com cache, migration/seeders e API CRUD (`/api/settings`).
+    *   Integração em PDF/E-mail (nome/contato da empresa).
+*   **Segurança e Performance:** [EM PROGRESSO]
+    *   Rate limiting global e por endpoint (login/listagens/relatórios).
+    *   Headers de segurança no Nginx (CSP restritiva, HSTS em TLS, COOP/CORP, Permissions-Policy).
+    *   Índices de busca e casts numéricos (produtos/serviços).
+    *   Varreduras Trivy (FS, config e imagem backend) no CI.
+    *   API Resources padronizando payloads; soft deletes em clients/products/services.
 *   **Backup/Restore do Banco de Dados:** [PENDENTE]
     *   Pesquisar e integrar uma solução de backup de banco de dados para Laravel (ex: `spatie/laravel-backup`).
     *   Implementar endpoints de API para iniciar um backup manual e listar backups existentes.
@@ -160,9 +163,10 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 
 **Entregáveis da Sprint:**
 
-*   Gerenciamento de configurações do sistema via API.
-*   Funcionalidade de backup do banco de dados implementada e testada.
-*   (Opcional) Funcionalidade de restore.
+*   Gerenciamento de configurações do sistema via API. [CONCLUÍDO]
+*   Rate limiting e headers de segurança aplicados. [CONCLUÍDO]
+*   Soft deletes e API Resources implementados. [CONCLUÍDO]
+*   (Pendente) Funcionalidade de backup/restore exposta via API.
 
 ### Sprint 6: Refinamento, Testes e Documentação (Duração: 1 semana)
 

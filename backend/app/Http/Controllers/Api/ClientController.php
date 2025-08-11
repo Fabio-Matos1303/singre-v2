@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use App\Http\Resources\ClientResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -44,7 +45,13 @@ class ClientController extends Controller
         $perPage = (int) $request->query('per_page', 15);
         $perPage = max(1, min(100, $perPage));
 
-        return response()->json($query->paginate($perPage));
+        $paginator = $query->paginate($perPage);
+        return response()->json([
+            'data' => ClientResource::collection($paginator)->resolve(),
+            'current_page' => $paginator->currentPage(),
+            'per_page' => $paginator->perPage(),
+            'total' => $paginator->total(),
+        ]);
     }
 
     /**
@@ -70,7 +77,7 @@ class ClientController extends Controller
         ]);
 
         $client = Client::create($data);
-        return response()->json($client, 201);
+        return (new ClientResource($client))->response()->setStatusCode(201);
     }
 
     /**
@@ -87,7 +94,7 @@ class ClientController extends Controller
      */
     public function show(Client $client): JsonResponse
     {
-        return response()->json($client);
+        return (new ClientResource($client))->response();
     }
 
     /**
@@ -114,7 +121,7 @@ class ClientController extends Controller
         ]);
 
         $client->update($data);
-        return response()->json($client);
+        return (new ClientResource($client))->response();
     }
 
     /**
