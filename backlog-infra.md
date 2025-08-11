@@ -132,32 +132,33 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   Imagens Docker do backend e frontend sendo construídas e versionadas. [CONCLUÍDO]
 *   Testes automatizados sendo executados no pipeline. [CONCLUÍDO]
 
-### Sprint 4: Deploy em Produção e Monitoramento (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
+### Sprint 4: Deploy em Produção e Monitoramento (Duração: 1-2 semanas) — Status: CONCLUÍDA ✅
 
 **Objetivo:** Finalizar o processo de deploy em produção e configurar ferramentas de monitoramento e logs.
 
 **Tarefas:**
 
 *   **Pipeline de CD (Produção):**
-    *   Configurar o pipeline para deploy em produção (manual ou automático após aprovação). [EM PROGRESSO]
+    *   Configurar o pipeline para deploy em produção (manual ou automático após aprovação). [CONCLUÍDO]
     *   Passos do pipeline:
         *   Pull das imagens Docker do registry.
         *   Deploy para o ambiente de produção (ex: Kubernetes, Docker Swarm, EC2).
         *   Estratégias de deploy (rolling updates, blue/green) para minimizar downtime.
 *   **Configuração de Logs:**
-    *   Configurar os containers Docker para enviar logs para um sistema centralizado (ex: ELK Stack, Grafana Loki, CloudWatch Logs). [EM PROGRESSO — Loki/Promtail adicionados]
-    *   Garantir que logs de aplicação (Laravel, Vue.js) e de servidor (Nginx) sejam capturados.
+    *   Configurar os containers Docker para enviar logs para um sistema centralizado (ex: ELK Stack, Grafana Loki, CloudWatch Logs). [CONCLUÍDO — Loki/Promtail]
+    *   Garantir que logs de aplicação (Laravel, Vue.js) e de servidor (Nginx) sejam capturados. [CONCLUÍDO]
 *   **Monitoramento:**
-    *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic). [EM PROGRESSO — Grafana, Prometheus, cAdvisor e exporters de MySQL/Redis adicionados; dashboards provisionados]
-    *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [EM PROGRESSO]
-    *   Configurar alertas para problemas críticos. [EM PROGRESSO — Contact point Slack provisionado]
+    *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic). [CONCLUÍDO — Grafana, Prometheus, cAdvisor e exporters de MySQL/Redis; dashboards provisionados]
+    *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [CONCLUÍDO — dashboards básicos]
+    *   Configurar alertas para problemas críticos. [CONCLUÍDO — contact point Slack]
 *   **Backup do Banco de Dados (Produção):**
-    *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção. [EM PROGRESSO — serviço de backup com cron no compose.prod]
+    *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção. [CONCLUÍDO — serviço de backup com cron no compose.prod]
 
 **Entregáveis da Sprint:**
 
-*   Processo de deploy em produção automatizado e robusto.
-*   Sistema de logs centralizado e monitoramento configurado.
+*   Processo de deploy em produção automatizado e robusto. [CONCLUÍDO]
+*   Sistema de logs centralizado e monitoramento configurado. [CONCLUÍDO]
+*   Backups automatizados com retenção configurável. [CONCLUÍDO]
 *   Estratégia de backup do banco de dados em produção.
 
 ### Sprint 5: Segurança e Otimizações Finais (Duração: 1 semana)
