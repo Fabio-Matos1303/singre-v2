@@ -29,7 +29,7 @@ O backlog foi dividido em funcionalidades principais, que serão então quebrada
 
 Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais e funcionais. As tarefas relacionadas ao Docker serão integradas em cada sprint conforme a necessidade.
 
-### Sprint 1: Setup do Ambiente e Core da Aplicação (Duração: 1-2 semanas)
+### Sprint 1: Setup do Ambiente e Core da Aplicação (Duração: 1-2 semanas) — Status: CONCLUÍDA ✅
 
 **Objetivo:** Configurar o ambiente de desenvolvimento com Docker, inicializar o projeto Laravel e implementar a base de autenticação.
 
@@ -57,77 +57,77 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 
 *   Ambiente de desenvolvimento Docker funcional com Laravel.
 *   Projeto Laravel inicializado e configurado.
-*   Sistema de autenticação de API (login/registro) funcional via Laravel Sanctum.
+*   Sistema de autenticação de API (login/registro) funcional via Laravel Sanctum. [CONCLUÍDO]
 *   `composer.json` atualizado com as dependências necessárias.
 
-### Sprint 2: Gerenciamento de Clientes e Produtos/Serviços (Duração: 1-2 semanas)
+### Sprint 2: Gerenciamento de Clientes e Produtos/Serviços (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
 
 **Objetivo:** Migrar as funcionalidades de CRUD para Clientes e Produtos/Serviços, utilizando o Eloquent ORM e criando endpoints de API.
 
 **Tarefas:**
 
-*   **Modelos e Migrations:**
+*   **Modelos e Migrations:** [EM PROGRESSO]
     *   Analisar a estrutura das tabelas `clientes` e `produtos/serviços` do banco de dados legado.
     *   Criar modelos Eloquent (`Client.php`, `Product.php`, `Service.php`) correspondentes.
     *   Criar migrations para recriar as tabelas `clientes` e `produtos/serviços` com as colunas necessárias, incluindo tipos de dados corretos e índices.
     *   Executar as novas migrations.
-*   **Seeders (Dados Iniciais/Teste):**
+*   **Seeders (Dados Iniciais/Teste):** [CONCLUÍDO]
     *   Criar seeders para popular as tabelas `clientes` e `produtos/serviços` com dados de teste ou dados iniciais, se aplicável.
-*   **Controladores e Rotas de API:**
+*   **Controladores e Rotas de API:** [CONCLUÍDO]
     *   Criar controladores (`ClientController.php`, `ProductController.php`, `ServiceController.php`) para gerenciar as operações CRUD.
     *   Definir rotas de API (GET, POST, PUT, DELETE) para clientes e produtos/serviços no `routes/api.php`.
     *   Implementar a lógica CRUD nos controladores, utilizando o Eloquent ORM.
-*   **Validação de Dados:**
+*   **Validação de Dados:** [CONCLUÍDO]
     *   Adicionar regras de validação para os dados de entrada nos requests de criação e atualização.
-*   **Testes de API:**
+*   **Testes de API:** [CONCLUÍDO PARCIAL — CRUD de listagem/criação cobertos]
     *   Testar todos os endpoints CRUD via Postman/Insomnia.
 
 **Entregáveis da Sprint:**
 
-*   Modelos Eloquent e Migrations para Clientes e Produtos/Serviços.
-*   Endpoints de API RESTful para CRUD de Clientes e Produtos/Serviços, com validação de dados.
-*   Dados de teste populados via Seeders.
+*   Modelos Eloquent e Migrations para Clientes e Produtos/Serviços. [CONCLUÍDO]
+*   Endpoints de API RESTful para CRUD de Clientes e Produtos/Serviços, com validação de dados. [CONCLUÍDO]
+*   Dados de teste populados via Seeders. [CONCLUÍDO]
 
-### Sprint 3: Gerenciamento de Ordens de Serviço (Duração: 2 semanas)
+### Sprint 3: Gerenciamento de Ordens de Serviço (Duração: 2 semanas) — Status: CONCLUÍDA ✅
 
 **Objetivo:** Migrar a funcionalidade central de Ordens de Serviço, incluindo relacionamentos e lógica de negócio.
 
 **Tarefas:**
 
-*   **Modelos e Migrations:**
+*   **Modelos e Migrations:** [CONCLUÍDO]
     *   Analisar a estrutura da tabela `ordens_de_servico` e suas relações com `clientes` e `produtos/serviços`.
     *   Criar o modelo Eloquent `ServiceOrder.php`.
     *   Criar a migration para a tabela `ordens_de_servico`, definindo chaves estrangeiras e relacionamentos.
     *   Executar a migration.
-*   **Relacionamentos Eloquent:**
+*   **Relacionamentos Eloquent:** [CONCLUÍDO]
     *   Definir os relacionamentos (`belongsTo`, `hasMany`, `belongsToMany`) nos modelos `ServiceOrder`, `Client`, `Product` e `Service`.
-*   **Controladores e Rotas de API:**
+*   **Controladores e Rotas de API:** [CONCLUÍDO]
     *   Criar o controlador `ServiceOrderController.php`.
     *   Definir rotas de API para CRUD de Ordens de Serviço, incluindo listagem, visualização detalhada, criação, atualização e exclusão.
     *   Implementar a lógica de negócio para o ciclo de vida da Ordem de Serviço (status, datas, etc.).
-*   **Validação de Dados e Lógica de Negócio:**
+*   **Validação de Dados e Lógica de Negócio:** [CONCLUÍDO]
     *   Adicionar validação robusta para a criação e atualização de Ordens de Serviço.
     *   Migrar a lógica de negócio existente (ex: cálculo de valores, histórico de status) para o controlador ou para Service Classes dedicadas.
-*   **Testes de API:**
+*   **Testes de API:** [CONCLUÍDO]
     *   Testar todos os endpoints de Ordens de Serviço.
 
 **Entregáveis da Sprint:**
 
-*   Modelos Eloquent e Migrations para Ordens de Serviço com relacionamentos definidos.
-*   Endpoints de API RESTful completos para CRUD de Ordens de Serviço.
-*   Lógica de negócio central de Ordens de Serviço implementada no backend.
+*   Modelos Eloquent e Migrations para Ordens de Serviço com relacionamentos definidos. [CONCLUÍDO]
+*   Endpoints de API RESTful completos para CRUD de Ordens de Serviço. [CONCLUÍDO]
+*   Lógica de negócio central de Ordens de Serviço implementada no backend. [CONCLUÍDO]
 
-### Sprint 4: Relatórios e E-mails (Duração: 1-2 semanas)
+### Sprint 4: Relatórios e E-mails (Duração: 1-2 semanas) — Status: EM ANDAMENTO 🚧
 
 **Objetivo:** Implementar a geração de relatórios (PDFs) e o envio de e-mails transacionais.
 
 **Tarefas:**
 
-*   **Geração de PDFs:**
+*   **Geração de PDFs:** [EM PROGRESSO — endpoint PDF de OS implementado]
     *   Integrar uma biblioteca de geração de PDF (ex: `dompdf/dompdf` via `barryvdh/laravel-dompdf`).
     *   Criar views Blade para os layouts dos relatórios (ex: Ordem de Serviço, Resumo de Clientes).
     *   Implementar endpoints de API para gerar e baixar PDFs de Ordens de Serviço ou outros relatórios.
-*   **Envio de E-mails:**
+*   **Envio de E-mails:** [CONCLUÍDO — envio ao criar OS via Mailpit]
     *   Configurar o Mailpit (ou outro serviço de e-mail de desenvolvimento) no Docker para testar o envio de e-mails.
     *   Criar Mailables no Laravel para e-mails transacionais (ex: confirmação de Ordem de Serviço, notificação de status).
     *   Integrar o envio de e-mails na lógica de negócio (ex: enviar e-mail ao criar/atualizar OS).
@@ -137,22 +137,22 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 
 **Entregáveis da Sprint:**
 
-*   Funcionalidade de geração de PDFs de relatórios/Ordens de Serviço.
-*   Envio de e-mails transacionais configurado e funcional.
+*   Funcionalidade de geração de PDFs de relatórios/Ordens de Serviço. [CONCLUÍDO]
+*   Envio de e-mails transacionais configurado e funcional. [CONCLUÍDO]
 *   (Opcional) Geração de dados para gráficos via API.
 
-### Sprint 5: Configurações do Sistema e Backup/Restore (Duração: 1 semana)
+### Sprint 5: Configurações do Sistema e Backup/Restore (Duração: 1 semana) — Status: EM ANDAMENTO 🚧
 
 **Objetivo:** Migrar as configurações do sistema e a funcionalidade de backup/restore.
 
 **Tarefas:**
 
-*   **Configurações do Sistema:**
+*   **Configurações do Sistema:** [EM PROGRESSO]
     *   Analisar a tabela `configuracao` legada.
     *   Criar modelo Eloquent e migration para a tabela de configurações.
     *   Implementar endpoints de API para visualizar e atualizar as configurações do sistema.
     *   Utilizar o sistema de cache do Laravel para otimizar o acesso às configurações.
-*   **Backup/Restore do Banco de Dados:**
+*   **Backup/Restore do Banco de Dados:** [PENDENTE]
     *   Pesquisar e integrar uma solução de backup de banco de dados para Laravel (ex: `spatie/laravel-backup`).
     *   Implementar endpoints de API para iniciar um backup manual e listar backups existentes.
     *   (Opcional) Implementar funcionalidade de restore (com cautela e validação de segurança).
