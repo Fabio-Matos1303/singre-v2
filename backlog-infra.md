@@ -150,7 +150,7 @@ Cada sprint terá duração de 1 a 2 semanas, com foco em entregas incrementais 
 *   **Monitoramento:**
     *   Configurar ferramentas de monitoramento de infraestrutura (ex: Prometheus + Grafana, Datadog, New Relic). [EM PROGRESSO — Grafana, Prometheus, cAdvisor e exporters de MySQL/Redis adicionados; dashboards provisionados]
     *   Monitorar uso de CPU, memória, rede, latência da aplicação e erros. [EM PROGRESSO]
-    *   Configurar alertas para problemas críticos.
+    *   Configurar alertas para problemas críticos. [EM PROGRESSO — Contact point Slack provisionado]
 *   **Backup do Banco de Dados (Produção):**
     *   Garantir que a estratégia de backup do banco de dados esteja configurada e automatizada no ambiente de produção. [EM PROGRESSO — serviço de backup com cron no compose.prod]
 

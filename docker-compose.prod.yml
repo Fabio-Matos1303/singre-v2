@@ -101,11 +101,14 @@ services:
     environment:
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_ALERTING_ENABLED: "true"
     volumes:
       - grafana_data:/var/lib/grafana
       - ./docker/monitoring/grafana/datasources/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
       - ./docker/monitoring/grafana/dashboards/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
       - ./docker/monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./docker/monitoring/grafana/alerting/contact-points.yml:/etc/grafana/provisioning/alerting/contact-points.yml:ro
+      - ./docker/monitoring/grafana/alerting/policies.yml:/etc/grafana/provisioning/alerting/policies.yml:ro
     depends_on:
       - loki
     restart: unless-stopped
