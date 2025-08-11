@@ -38,6 +38,15 @@ jobs:
         working-directory: backend
         run: |
           if [ -x vendor/bin/phpunit ]; then vendor/bin/phpunit --colors=never; else echo "no phpunit"; fi
+      - name: Generate OpenAPI (backend)
+        working-directory: backend
+        run: |
+          if [ -x artisan ]; then php artisan l5-swagger:generate || true; fi
+      - name: Upload OpenAPI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi-json
+          path: backend/storage/api-docs/
 
   frontend-tests:
     runs-on: ubuntu-latest

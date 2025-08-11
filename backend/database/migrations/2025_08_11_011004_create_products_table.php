@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 12, 2)->default(0);
             $table->integer('stock')->default(0);
             $table->timestamps();
+            $table->index('name');
         });
     }
 

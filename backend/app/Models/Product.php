@@ -9,4 +9,9 @@ class Product extends Model
     protected $fillable = [
         'name', 'sku', 'description', 'price', 'stock',
     ];
+
+    protected $casts = [
+        'price' => 'decimal:2',
+        'stock' => 'integer',
+    ];
 }

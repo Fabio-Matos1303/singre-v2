@@ -71,7 +71,7 @@ class CrudAndFilterTest extends TestCase
         // update
         $this->withHeaders($headers)->putJson('/api/products/'.$p2['id'], [
             'price' => 60
-        ])->assertOk()->assertJsonFragment(['price'=>60]);
+        ])->assertOk()->assertJsonPath('price', '60.00');
 
         // filters
         $list = $this->withHeaders($headers)->getJson('/api/products?q=tec&per_page=1&sort=price&order=desc')
@@ -101,7 +101,7 @@ class CrudAndFilterTest extends TestCase
         // update
         $this->withHeaders($headers)->putJson('/api/services/'.$s2['id'], [
             'price' => 175
-        ])->assertOk()->assertJsonFragment(['price'=>175]);
+        ])->assertOk()->assertJsonPath('price', '175.00');
 
         // filters
         $list = $this->withHeaders($headers)->getJson('/api/services?q=Manu&per_page=1&sort=price&order=asc')

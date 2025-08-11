@@ -65,12 +65,22 @@ class AuthController extends Controller
     {
         $credentials = $request->validated();
 
+        // Simple throttle: allow up to 5 attempts per minute per IP
+        $key = 'login:'.request()->ip();
+        if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($key, 5)) {
+            $seconds = \Illuminate\Support\Facades\RateLimiter::availableIn($key);
+            return response()->json(['message' => 'Too many attempts. Try again in '.$seconds.' seconds.'], 429);
+        }
+
         $user = User::where('email', $credentials['email'])->first();
         if (! $user || ! Hash::check($credentials['password'], $user->password)) {
+            \Illuminate\Support\Facades\RateLimiter::hit($key, 60);
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
+
+        \Illuminate\Support\Facades\RateLimiter::clear($key);
 
         $token = $user->createToken('api')->plainTextToken;
 

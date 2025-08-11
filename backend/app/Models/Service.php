@@ -9,4 +9,8 @@ class Service extends Model
     protected $fillable = [
         'name', 'description', 'price',
     ];
+
+    protected $casts = [
+        'price' => 'decimal:2',
+    ];
 }

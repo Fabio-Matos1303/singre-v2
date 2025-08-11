@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
 use App\Models\ServiceOrder;
 
@@ -50,6 +51,20 @@ class ServiceOrderCreated extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        // Render the same HTML used by the PDF route and attach as PDF
+        $html = view('pdf.service_order', ['order' => $this->order->load(['client','products','services'])])->render();
+        $dompdf = new \Dompdf\Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $pdf = $dompdf->output();
+
+        $filename = 'service_order_'.$this->order->id.'.pdf';
+
+        return [
+            Attachment::fromData(fn () => $pdf, $filename)
+                ->as($filename)
+                ->withMime('application/pdf'),
+        ];
     }
 }

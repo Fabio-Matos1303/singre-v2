@@ -135,6 +135,15 @@ class ServiceOrderController extends Controller
 
     public function pdf(ServiceOrder $serviceOrder)
     {
+        /**
+         * @OA\Get(
+         *   path="/api/service-orders/{id}/pdf",
+         *   tags={"ServiceOrders"},
+         *   security={{"bearerAuth":{}}},
+         *   @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+         *   @OA\Response(response=200, description="PDF"),
+         * )
+         */
         $order = $serviceOrder->load(['client','products','services']);
         $html = view('pdf.service_order', compact('order'))->render();
         $dompdf = new \Dompdf\Dompdf();
