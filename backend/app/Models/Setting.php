@@ -21,4 +21,9 @@ class Setting extends Model
         static::query()->updateOrCreate(['key'=>$key], ['value'=>$value]);
         Cache::forget("setting:{$key}");
     }
+
+    public static function intValue(string $key, int $default = 0): int
+    {
+        return (int) static::getValue($key, $default);
+    }
 }
