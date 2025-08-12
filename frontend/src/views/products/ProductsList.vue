@@ -1,9 +1,9 @@
 <template>
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
-      <h2 style="margin:0">Clientes</h2>
+      <h2 style="margin:0">Produtos</h2>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-        <input class="input" style="width:240px" v-model="q" placeholder="Buscar por nome/email" @keyup.enter="fetchClients" />
+        <input class="input" style="width:240px" v-model="q" placeholder="Buscar por nome/SKU" @keyup.enter="fetchItems" />
         <select class="input" style="width:160px" v-model="trashed">
           <option value="">Ativos</option>
           <option value="with">Com excluídos</option>
@@ -12,14 +12,15 @@
         <select class="input" style="width:200px" v-model="sort">
           <option value="created_at">Criado em</option>
           <option value="name">Nome</option>
-          <option value="email">Email</option>
+          <option value="sku">SKU</option>
+          <option value="price">Preço</option>
         </select>
         <select class="input" style="width:140px" v-model="order">
           <option value="desc">Desc</option>
           <option value="asc">Asc</option>
         </select>
-        <button class="button" @click="fetchClients">Buscar</button>
-        <RouterLink class="button" to="/clients/new">Novo</RouterLink>
+        <button class="button" @click="fetchItems">Buscar</button>
+        <RouterLink class="button" to="/products/new">Novo</RouterLink>
       </div>
     </div>
     <div style="height:16px" />
@@ -27,22 +28,24 @@
       <thead>
         <tr>
           <th @click="toggleSort('name')" style="cursor:pointer">Nome <span style="opacity:.7">{{ sortIcon('name') }}</span></th>
-          <th @click="toggleSort('email')" style="cursor:pointer">Email <span style="opacity:.7">{{ sortIcon('email') }}</span></th>
-          <th @click="toggleSort('created_at')" style="cursor:pointer">Criado em <span style="opacity:.7">{{ sortIcon('created_at') }}</span></th>
+          <th @click="toggleSort('sku')" style="cursor:pointer">SKU <span style="opacity:.7">{{ sortIcon('sku') }}</span></th>
+          <th @click="toggleSort('price')" style="cursor:pointer">Preço <span style="opacity:.7">{{ sortIcon('price') }}</span></th>
+          <th @click="toggleSort('stock')" style="cursor:pointer">Estoque <span style="opacity:.7">{{ sortIcon('stock') }}</span></th>
           <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="c in clients" :key="c.id" @click="goShow(c.id)" style="cursor:pointer">
+        <tr v-for="p in items" :key="p.id" @click="goShow(p.id)" style="cursor:pointer">
           <td>
-            <span>{{ c.name }}</span>
-            <span v-if="c.deleted_at" style="margin-left:8px;color:#94a3b8">(excluído)</span>
+            <span>{{ p.name }}</span>
+            <span v-if="p.deleted_at" style="margin-left:8px;color:#94a3b8">(excluído)</span>
           </td>
-          <td>{{ c.email }}</td>
-          <td>{{ new Date(c.created_at).toLocaleString() }}</td>
+          <td>{{ p.sku }}</td>
+          <td>R$ {{ Number(p.price).toFixed(2) }}</td>
+          <td>{{ p.stock }}</td>
           <td style="text-align:right">
-            <button class="button" v-if="c.deleted_at" @click.stop="restore(c.id)">Restaurar</button>
-            <RouterLink class="button" :to="`/clients/${c.id}/edit`" @click.stop>Editar</RouterLink>
+            <button class="button" v-if="p.deleted_at" @click.stop="restore(p.id)">Restaurar</button>
+            <RouterLink class="button" :to="`/products/${p.id}/edit`" @click.stop>Editar</RouterLink>
           </td>
         </tr>
       </tbody>
@@ -61,9 +64,9 @@ import { ref, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import api from '../../lib/api'
 
-const clients = ref<any[]>([])
+const items = ref<any[]>([])
 const q = ref('')
-const trashed = ref('') // '' | 'with' | 'only'
+const trashed = ref('')
 const page = ref(1)
 const perPage = ref(15)
 const total = ref(0)
@@ -71,18 +74,18 @@ const router = useRouter()
 const sort = ref('created_at')
 const order = ref<'asc'|'desc'>('desc')
 
-async function fetchClients() {
+async function fetchItems(){
   const params: Record<string, any> = { q: q.value, page: page.value, sort: sort.value, order: order.value }
   if (trashed.value === 'with') params.with_trashed = true
   if (trashed.value === 'only') params.only_trashed = true
-  const { data } = await api.get('/api/clients', { params })
-  clients.value = data.data
+  const { data } = await api.get('/api/products', { params })
+  items.value = data.data
   total.value = data.total
 }
-function next(){ if(page.value * perPage.value < total.value){ page.value++; fetchClients() } }
-function prev(){ if(page.value>1){ page.value--; fetchClients() } }
-async function restore(id: number){ await api.post(`/api/clients/${id}/restore`); fetchClients() }
-function goShow(id: number){ router.push(`/clients/${id}`) }
+function next(){ if(page.value * perPage.value < total.value){ page.value++; fetchItems() } }
+function prev(){ if(page.value>1){ page.value--; fetchItems() } }
+async function restore(id: number){ await api.post(`/api/products/${id}/restore`); fetchItems() }
+function goShow(id: number){ router.push(`/products/${id}`) }
 function toggleSort(col: string){
   if (sort.value === col) {
     order.value = order.value === 'asc' ? 'desc' : 'asc'
@@ -90,21 +93,21 @@ function toggleSort(col: string){
     sort.value = col
     order.value = 'asc'
   }
-  fetchClients()
+  fetchItems()
 }
 function sortIcon(col: string){
   if (sort.value !== col) return ''
   return order.value === 'asc' ? '↑' : '↓'
 }
 
-onMounted(fetchClients)
+onMounted(fetchItems)
 watch([sort, order], () => {
-  localStorage.setItem('clients.sort', sort.value)
-  localStorage.setItem('clients.order', order.value)
+  localStorage.setItem('products.sort', sort.value)
+  localStorage.setItem('products.order', order.value)
 })
 onMounted(() => {
-  const s = localStorage.getItem('clients.sort')
-  const o = localStorage.getItem('clients.order') as 'asc'|'desc'|null
+  const s = localStorage.getItem('products.sort')
+  const o = localStorage.getItem('products.order') as 'asc'|'desc'|null
   if (s) sort.value = s
   if (o === 'asc' || o === 'desc') order.value = o
 })
