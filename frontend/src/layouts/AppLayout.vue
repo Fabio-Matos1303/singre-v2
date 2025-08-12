@@ -5,8 +5,12 @@
       <nav>
         <RouterLink to="/dashboard">Dashboard</RouterLink>
         <RouterLink to="/clients">Clientes</RouterLink>
+        <RouterLink to="/equipment">Equipamentos</RouterLink>
         <RouterLink to="/products">Produtos</RouterLink>
         <RouterLink to="/services">Serviços</RouterLink>
+        <RouterLink to="/service-orders">OS</RouterLink>
+        <RouterLink to="/reports">Relatórios</RouterLink>
+        <RouterLink to="/settings">Configurações</RouterLink>
       </nav>
     </aside>
     <main class="content">
