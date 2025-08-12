@@ -60,6 +60,33 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            // Configure dump options for spatie/db-dumper (used by laravel-backup)
+            'dump' => [
+                // Disable TLS for local dev dump using mariadb-dump
+                'addExtraOption' => '--skip-ssl',
+                'useSingleTransaction' => true,
+            ],
+        ],
+
+        // Legacy data source for migration from old Singre (XAMPP/MySQL)
+        'legacy' => [
+            'driver' => 'mysql',
+            'url' => env('LEGACY_DB_URL'),
+            'host' => env('LEGACY_DB_HOST', '127.0.0.1'),
+            'port' => env('LEGACY_DB_PORT', '3306'),
+            'database' => env('LEGACY_DB_DATABASE', 'starnew'),
+            'username' => env('LEGACY_DB_USERNAME', 'root'),
+            'password' => env('LEGACY_DB_PASSWORD', ''),
+            'unix_socket' => env('LEGACY_DB_SOCKET', ''),
+            'charset' => env('LEGACY_DB_CHARSET', 'latin1'),
+            'collation' => env('LEGACY_DB_COLLATION', 'latin1_swedish_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('LEGACY_MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
 
         'mariadb' => [
