@@ -931,6 +931,79 @@
                     }
                 ]
             }
+        },
+        "/api/backups/run": {
+            "post": {
+                "tags": [
+                    "Backups"
+                ],
+                "operationId": "61fd2c9a07506188562ebc9df79b6a22",
+                "parameters": [
+                    {
+                        "name": "only_db",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Backup executed"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/backups": {
+            "get": {
+                "tags": [
+                    "Backups"
+                ],
+                "operationId": "20a106823fec720f168460b25b027090",
+                "responses": {
+                    "200": {
+                        "description": "List backups"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/backups/{filename}/download": {
+            "get": {
+                "tags": [
+                    "Backups"
+                ],
+                "operationId": "c6b6e67ca39ffda6f8940972d15801a7",
+                "parameters": [
+                    {
+                        "name": "filename",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Download backup"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -1059,6 +1132,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Backups",
+            "description": "Backup operations"
+        },
         {
             "name": "Auth",
             "description": "Auth"
