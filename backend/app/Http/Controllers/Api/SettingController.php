@@ -59,4 +59,12 @@ class SettingController extends Controller
         $setting->delete();
         return response()->json(['message'=>'Deleted']);
     }
+
+    /** Reset OS sequence for a specific year (e.g., on year change). */
+    public function resetOsSequence(Request $request): JsonResponse
+    {
+        $year = (int) ($request->query('year') ?: now()->year);
+        Setting::setValue("os.sequence.{$year}", '0');
+        return response()->json(['message' => 'Sequence reset', 'year' => $year]);
+    }
 }

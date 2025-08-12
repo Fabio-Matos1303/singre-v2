@@ -45,7 +45,7 @@ class ProductController extends Controller
             });
         }
 
-        $sortable = ['name', 'sku', 'price', 'created_at'];
+        $sortable = ['name', 'sku', 'price', 'stock', 'created_at'];
         $sort = in_array($request->query('sort'), $sortable, true) ? $request->query('sort') : 'created_at';
         $order = strtolower($request->query('order', 'desc')) === 'asc' ? 'asc' : 'desc';
         $query->orderBy($sort, $order);
