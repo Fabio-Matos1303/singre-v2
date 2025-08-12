@@ -23,6 +23,7 @@ class ClientResource extends JsonResource
             'address' => $this->address,
             'created_at' => optional($this->created_at)?->toISOString(),
             'updated_at' => optional($this->updated_at)?->toISOString(),
+            'deleted_at' => optional($this->deleted_at)?->toISOString(),
         ];
     }
 }
