@@ -2,12 +2,13 @@
 
 # Build stage (used when a real Vue project exists)
 FROM node:20-alpine AS builder
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 WORKDIR /app
 
 # Copy dependency manifests first for better layer caching
 COPY ./frontend/package*.json ./
-RUN if [ -f package-lock.json ]; then npm ci; elif [ -f package.json ]; then npm install; fi
+RUN npm install -g vite && \
+    if [ -f package-lock.json ]; then npm ci; elif [ -f package.json ]; then npm install; fi
 
 # Copy the rest of the source and build
 COPY ./frontend/ ./
