@@ -1,24 +1,150 @@
-*.log
-.DS_Store
+# ===========================================
+# LARAVEL BACKEND - SINGRE V2
+# ===========================================
+# Arquivo .gitignore específico para o backend Laravel
+# Baseado nas melhores práticas do Laravel
+
+# ===========================================
+# DEPENDÊNCIAS
+# ===========================================
+# Composer
+/vendor/
+composer.phar
+composer.lock
+
+# ===========================================
+# ARQUIVOS DE CONFIGURAÇÃO
+# ===========================================
+# Variáveis de ambiente
 .env
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/auth.json
-/node_modules
-/public/build
-/public/hot
-/public/storage
+.env.staging
+.env.local
+.env.*.local
+
+# Configurações específicas do Laravel
+config/database.php.bak
+config/app.php.bak
+
+# ===========================================
+# ARQUIVOS DE APLICAÇÃO
+# ===========================================
+# Storage (arquivos gerados pela aplicação)
 /storage/*.key
-/storage/pail
-/vendor
-Homestead.json
-Homestead.yaml
-Thumbs.db
+/storage/logs/*.log
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/app/public/*
+/storage/app/backups/*
+/storage/app/uploads/*
+/storage/app/temp/*
+
+# Manter diretórios mas ignorar conteúdo
+!/storage/framework/cache/.gitkeep
+!/storage/framework/sessions/.gitkeep
+!/storage/framework/views/.gitkeep
+!/storage/app/public/.gitkeep
+!/storage/app/backups/.gitkeep
+!/storage/app/uploads/.gitkeep
+!/storage/app/temp/.gitkeep
+
+# ===========================================
+# ARQUIVOS DE BUILD E COMPILAÇÃO
+# ===========================================
+# Mix/Vite
+/public/mix-manifest.json
+/public/build/
+/public/hot
+
+# ===========================================
+# CACHE E TEMPORÁRIOS
+# ===========================================
+# Cache do Laravel
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Cache de configuração
+.phpunit.result.cache
+.php_cs.cache
+
+# ===========================================
+# TESTES
+# ===========================================
+# Cobertura de testes
+/coverage/
+.phpunit.cache/
+
+# ===========================================
+# BACKUP E MIGRAÇÕES
+# ===========================================
+# Backups de banco
+*.sql
+*.sqlite
+*.sqlite3
+
+# Migrações de desenvolvimento
+database/migrations/*_dev_*.php
+database/migrations/*_temp_*.php
+
+# ===========================================
+# LOGS E DEBUG
+# ===========================================
+# Logs da aplicação
+*.log
+logs/
+debug.log
+
+# ===========================================
+# ARQUIVOS DE DESENVOLVIMENTO
+# ===========================================
+# Arquivos de desenvolvimento
+*.dev
+*.development
+*.test.local
+
+# ===========================================
+# IDE E EDITORES
+# ===========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PHPStorm/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ===========================================
+# ARQUIVOS ESPECÍFICOS DO PROJETO
+# ===========================================
+# Documentação da API
+storage/api-docs/api-docs.json
+
+# Arquivos de upload de usuários
+storage/app/public/uploads/*
+!/storage/app/public/uploads/.gitkeep
+
+# Backups automáticos
+storage/app/backups/*
+!/storage/app/backups/.gitkeep
+
+# ===========================================
+# SEGURANÇA
+# ===========================================
+# Chaves de aplicação
+.env
+.env.*
+!.env.example
+
+# Chaves de criptografia
+storage/app/keys/*
+!/storage/app/keys/.gitkeep
+
+# ===========================================
+# NOTAS
+# ===========================================
+# Este arquivo ignora arquivos específicos do Laravel
+# Para configurações gerais, verifique o .gitignore da raiz

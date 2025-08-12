@@ -1,0 +1,135 @@
+# ===========================================
+# VUE.JS FRONTEND - SINGRE V2
+# ===========================================
+# Arquivo .gitignore específico para o frontend Vue.js
+# Baseado nas melhores práticas do Vue 3 + Vite
+
+# ===========================================
+# DEPENDÊNCIAS
+# ===========================================
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ===========================================
+# ARQUIVOS DE BUILD
+# ===========================================
+# Vite
+dist/
+dist-ssr/
+*.local
+
+# ===========================================
+# ARQUIVOS DE CONFIGURAÇÃO
+# ===========================================
+# Variáveis de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Configurações específicas
+.env.*.local
+
+# ===========================================
+# CACHE E TEMPORÁRIOS
+# ===========================================
+# Cache do Vite
+.vite/
+.vite-cache/
+
+# Cache do Node
+.npm/
+.eslintcache
+.stylelintcache
+
+# ===========================================
+# TESTES
+# ===========================================
+# Cobertura de testes
+coverage/
+*.lcov
+
+# Cache de testes
+.nyc_output/
+.nyc_output
+
+# ===========================================
+# LOGS E DEBUG
+# ===========================================
+# Logs da aplicação
+*.log
+logs/
+debug.log
+
+# ===========================================
+# ARQUIVOS DE DESENVOLVIMENTO
+# ===========================================
+# Arquivos de desenvolvimento
+*.dev
+*.development
+*.test.local
+
+# ===========================================
+# IDE E EDITORES
+# ===========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# WebStorm/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ===========================================
+# ARQUIVOS ESPECÍFICOS DO PROJETO
+# ===========================================
+# Arquivos de upload de usuários
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Arquivos temporários de build
+.temp/
+.tmp/
+
+# ===========================================
+# SEGURANÇA
+# ===========================================
+# Chaves de API
+.env
+.env.*
+!.env.example
+
+# ===========================================
+# ARQUIVOS DE SISTEMA
+# ===========================================
+# Sistema operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# ARQUIVOS DE BACKUP
+# ===========================================
+# Backups de arquivos
+*.bak
+*.backup
+*.old
+*.orig
+
+# ===========================================
+# NOTAS
+# ===========================================
+# Este arquivo ignora arquivos específicos do Vue.js
+# Para configurações gerais, verifique o .gitignore da raiz

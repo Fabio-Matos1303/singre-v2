@@ -1,0 +1,120 @@
+# ===========================================
+# SINGRE V2 - Sistema de Gerenciamento de Ordens de Serviço
+# ===========================================
+# Arquivo .gitignore principal do projeto
+# Configurações gerais para frontend e backend
+
+# ===========================================
+# SISTEMA OPERACIONAL
+# ===========================================
+# Arquivos do sistema
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ===========================================
+# EDITORES E IDEs
+# ===========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PHPStorm/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ===========================================
+# DOCKER
+# ===========================================
+# Volumes e dados do Docker
+docker/data/
+docker/volumes/
+*.env.local
+*.env.production
+
+# ===========================================
+# LOGS E TEMPORÁRIOS
+# ===========================================
+# Logs gerais
+*.log
+logs/
+log/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.cache
+.cache/
+
+# ===========================================
+# BACKUP E ARQUIVOS DE SISTEMA
+# ===========================================
+# Backups do sistema
+*.bak
+*.backup
+*.old
+*.orig
+
+# Arquivos de sistema
+*.pid
+*.seed
+*.pid.lock
+
+# ===========================================
+# DOCUMENTAÇÃO TEMPORÁRIA
+# ===========================================
+# Arquivos de documentação temporários
+*.md~
+*.txt~
+err.txt
+
+# ===========================================
+# CONFIGURAÇÕES ESPECÍFICAS
+# ===========================================
+# Configurações locais
+.env.local
+.env.production
+.env.staging
+
+# Configurações de IDE específicas
+.vscode/settings.json
+.idea/workspace.xml
+
+# ===========================================
+# ARQUIVOS DE DESENVOLVIMENTO
+# ===========================================
+# Arquivos de desenvolvimento
+*.dev
+*.development
+*.test.local
+
+# ===========================================
+# EXCLUSÕES ESPECÍFICAS DO PROJETO
+# ===========================================
+# Arquivos específicos do projeto
+RELATORIO_REQUISITOS_SINGRE.md
+err.txt
+
+# ===========================================
+# NOTAS
+# ===========================================
+# Este arquivo ignora configurações gerais
+# Para configurações específicas, verifique:
+# - backend/.gitignore (Laravel)
+# - frontend/.gitignore (Vue.js)
+# - docker/.gitignore (Docker)

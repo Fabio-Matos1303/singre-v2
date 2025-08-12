@@ -1,0 +1,89 @@
+# ===========================================
+# DOCKER - SINGRE V2
+# ===========================================
+# Arquivo .gitignore específico para o diretório Docker
+# Configurações para containers e volumes
+
+# ===========================================
+# VOLUMES E DADOS
+# ===========================================
+# Volumes de dados
+data/
+volumes/
+mysql/
+redis/
+mailpit/
+
+# ===========================================
+# ARQUIVOS DE CONFIGURAÇÃO LOCAL
+# ===========================================
+# Configurações específicas do ambiente
+.env.docker
+.env.docker.local
+docker-compose.override.yml
+docker-compose.local.yml
+
+# ===========================================
+# LOGS E TEMPORÁRIOS
+# ===========================================
+# Logs dos containers
+logs/
+*.log
+container-logs/
+
+# Arquivos temporários
+*.tmp
+*.temp
+.cache/
+
+# ===========================================
+# BACKUP E SNAPSHOTS
+# ===========================================
+# Backups de volumes
+backups/
+snapshots/
+*.tar
+*.tar.gz
+*.tar.bz2
+
+# ===========================================
+# ARQUIVOS DE DESENVOLVIMENTO
+# ===========================================
+# Arquivos de desenvolvimento
+*.dev
+*.development
+*.test.local
+
+# ===========================================
+# IDE E EDITORES
+# ===========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# ===========================================
+# ARQUIVOS ESPECÍFICOS DO PROJETO
+# ===========================================
+# Arquivos de upload de usuários
+uploads/
+!uploads/.gitkeep
+
+# Arquivos temporários de build
+.temp/
+.tmp/
+
+# ===========================================
+# SEGURANÇA
+# ===========================================
+# Chaves e certificados
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+
+# ===========================================
+# NOTAS
+# ===========================================
+# Este arquivo ignora arquivos específicos do Docker
+# Para configurações gerais, verifique o .gitignore da raiz

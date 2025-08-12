@@ -1,0 +1,77 @@
+# ===========================================
+# SCRIPTS - SINGRE V2
+# ===========================================
+# Arquivo .gitignore específico para o diretório de scripts
+# Configurações para automação e DevOps
+
+# ===========================================
+# LOGS E TEMPORÁRIOS
+# ===========================================
+# Logs dos scripts
+*.log
+logs/
+script-logs/
+
+# Arquivos temporários
+*.tmp
+*.temp
+.cache/
+
+# ===========================================
+# ARQUIVOS DE CONFIGURAÇÃO LOCAL
+# ===========================================
+# Configurações específicas do ambiente
+*.env
+*.env.local
+*.env.production
+*.env.staging
+
+# ===========================================
+# BACKUP E SNAPSHOTS
+# ===========================================
+# Backups gerados pelos scripts
+backups/
+snapshots/
+*.bak
+*.backup
+*.old
+
+# ===========================================
+# ARQUIVOS DE DESENVOLVIMENTO
+# ===========================================
+# Arquivos de desenvolvimento
+*.dev
+*.development
+*.test.local
+
+# ===========================================
+# IDE E EDITORES
+# ===========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# ===========================================
+# ARQUIVOS ESPECÍFICOS DO PROJETO
+# ===========================================
+# Arquivos temporários de execução
+.temp/
+.tmp/
+output/
+results/
+
+# ===========================================
+# SEGURANÇA
+# ===========================================
+# Chaves e certificados
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+
+# ===========================================
+# NOTAS
+# ===========================================
+# Este arquivo ignora arquivos específicos dos scripts
+# Para configurações gerais, verifique o .gitignore da raiz
